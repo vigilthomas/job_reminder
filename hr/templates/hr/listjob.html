@@ -1,0 +1,39 @@
+{%extends "hr/base.html"%}
+{%block main_block%}
+{% load static %}
+
+
+
+<br><br>
+<div class="">
+    <h1>Job List</h1>
+    <hr class="border-3 w-25"><br>
+</div>
+{%for d in data%}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4 ">
+            {%if d.poster%}
+            <img src="{{d.poster.url}}"
+                style="width: 100%;object-fit: cover ;height: 200px;">
+            {%else%}
+            <img src="{% static 'hr/img/deadpool.jpg' %}"
+                style="width: fit-content; max-width: 100%;object-fit: cover ;height: 200px;">
+            {%endif%}
+        </div>
+        <div class="col-md-8 d-flex">
+            <div class="card-body">
+                <h5 class="card-title">{{d.title}}</h5>
+                <p>{{d.company}}</p>
+                <p>Vaccancies : {{d.vaccancies}}</p>
+                <div class="">
+                    <p class=" btn btn-dark">View</p>
+                    <p class=" btn btn-dark">Update</p>
+                    <p class=" btn btn-secondary">Delete</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+{%endblock%}

@@ -35,15 +35,15 @@ class StudentProfile(models.Model):
     skills = models.CharField(max_length=200)
     age = models.PositiveIntegerField()
     options = (
-        ("male", "male"), ("female", "female")
+        ("Male", "Male"), ("Female", "Female"), ("Others", "Others"),
     )
-    gender = models.CharField(max_length=200, choices=options, default="male")
+    gender = models.CharField(max_length=200, choices=options, default="Male")
     experience = models.PositiveIntegerField(default=0)
     address = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
     profile_pic = models.ImageField(
         upload_to="profilepics", null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="profile")
 
 
 class Applications(models.Model):

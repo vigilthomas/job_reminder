@@ -19,8 +19,10 @@ from django.conf import settings
 from django.urls import path
 from django.urls import path,include
 from hr.views import *
+from jobseeker.views import *
 
 urlpatterns = [
     path('', include('hr.urls')),
+    path('jobseeker/', include('jobseeker.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

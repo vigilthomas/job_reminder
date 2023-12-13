@@ -7,30 +7,38 @@
 <br><br>
 <div class="">
     <h1>Job List</h1>
-    <hr class="border-3 w-25"><br>
+    <hr class="border-3 w-25 d-flex justify-content-center"><br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{%url 'list_job'%}" class="btn btn-secondary">All</a>
+        <a href="{%url 'list_job'%}?status=True" class="btn btn-secondary">Active</a>
+        <a href="{%url 'list_job'%}?status=False" class="btn btn-secondary">Inactive</a>
+    </div>
 </div>
 {%for d in data%}
 <div class="card mb-3">
     <div class="row g-0">
-        <div class="col-md-4 ">
+        <div class="col-md-3   ">
             {%if d.poster%}
-            <img src="{{d.poster.url}}"
-                style="width: 100%;object-fit: cover ;height: 200px;">
+            <img src="{{d.poster.url}}" style="width: 75% ;height: 90%;">
             {%else%}
             <img src="{% static 'hr/img/deadpool.jpg' %}"
                 style="width: fit-content; max-width: 100%;object-fit: cover ;height: 200px;">
             {%endif%}
         </div>
-        <div class="col-md-8 d-flex">
+        <div class="col-md-6">
             <div class="card-body">
                 <h5 class="card-title">{{d.title}}</h5>
-                <p>{{d.company}}</p>
+                <p class="fw-bold">{{d.company}}</p>
                 <p>Vaccancies : {{d.vaccancies}}</p>
-                <div class="">
-                    <p class=" btn btn-dark">View</p>
-                    <p class=" btn btn-dark">Update</p>
-                    <p class=" btn btn-secondary">Delete</p>
-                </div>
+                <p>Last Date : {{d.last_date}}</p>
+
+            </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
+            <div class="">
+                <a href="#" class=" btn btn-dark">View</a>
+                <a href="{%url 'update_job' d.id%}" class=" btn btn-dark">Update</a>
+                <a href="{%url 'delete_job' d.id %}" class=" btn btn-secondary">Delete</a>
             </div>
         </div>
     </div>

@@ -1,4 +1,6 @@
-from django.views.generic import View, FormView, TemplateView, CreateView,ListView
+from typing import Any
+from django.db.models.query import QuerySet
+from django.views.generic import View, FormView, TemplateView, CreateView,ListView,UpdateView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
@@ -24,7 +26,10 @@ class SigninView(FormView):
             if user_obj:
                 login(request, user_obj)
                 print("Success")
-                return redirect('hr_home')
+                if request.user.is_superuser:
+                    return redirect("hr_home")
+                else:
+                    return redirect("jobseeker_home")
         print("Failed")
         return render(request,"hr/login.html",{"form":form})
 
@@ -56,7 +61,42 @@ class JobAddView(CreateView):
     form_class = JobForm
     success_url = reverse_lazy("list_job")
 
+
 class JobListView(ListView):
     template_name = "hr/listjob.html"
     context_object_name = "data"
     model = Jobs
+
+    def get(self,request,*args,**kwargs):
+        qs=Jobs.objects.all()
+
+        if "status" in request.GET:
+            value=request.GET.get("status")
+            qs=qs.filter(status=value)
+        return render(request,self.template_name,{"data":qs})
+
+    # def get_queryset(self):
+    #     return Jobs.objects.filter(status=True)
+
+
+class JobCompleteView(ListView):
+    template_name = "hr/listjob.html"
+    context_object_name = "data"
+    model = Jobs
+
+    def get_queryset(self):
+        return Jobs.objects.filter(status=False)
+
+class JobDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get("pk")
+        Jobs.objects.filter(id=id).delete()
+        return redirect("list_job")
+
+
+class JobUpdateView(UpdateView):
+    form_class = JobChangeForm
+    template_name = "hr/updatejob.html"
+    model=Jobs
+    success_url = reverse_lazy("list_job")
+

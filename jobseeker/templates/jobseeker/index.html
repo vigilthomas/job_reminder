@@ -1,0 +1,104 @@
+{%extends "jobseeker/base.html"%}
+{%block mainblock%}
+<div>
+
+</div>
+{%if form.errors%}
+{{form.errors}}
+{%endif%}
+
+<div class="row">
+    <div class="col-2 bg-white">
+        
+    </div>
+    <div class="col-7 bg-primary pt-5">
+        POST
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat pariatur sapiente velit nesciunt ut?
+        Ea qui esse ng elit. Repellat pariatur sapiente velit nesciunt ut?
+         reprehenderit voluptas. Ab dolor iure nulla quas magni!ur adipisicing elit. Ducimus, ullam earum repellendus est iusto ipsa obcaecati debitis nemo,
+        rem, maiores tempora molestiae reprehenderit voluptas. Ab dolor iure nulla quas magni! reprehenderit voluptas. Ab dolor iure nulla quas magni!
+    </div>
+    <div class="col-4 bg-white ">
+        
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="d-flex justify-content-around">
+        <a href="#" class="btn btn-dark ">Jobs</a>
+        <a href="#" class="btn btn-dark ">Applied Applications</a>
+        {% if request.user.profile %}
+        <a href="{%url 'jobseeker_detailprofile' request.user.profile.id %}"
+            class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-center">View Profile</a>
+        {% else %}
+        <a href="{%url 'jobseeker_addprofile' %}"
+            class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-center ">Add
+            Profile</a>
+        {%endif%}
+</div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
+            perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
+            consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
+                perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
+                consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
+                    perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
+                    consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
+                        perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
+                        consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
+                            perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
+                            consectetur labore?</p><br><br><br><br>
+    
+<style>
+    .sidenav {
+        height: 100%;
+        width: 28%;
+        margin-right: auto;
+        position: fixed;
+        background-color: #afafaf;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .main {
+        margin-right: 160px;
+        /* Same as the width of the sidenav */
+        font-size: 28px;
+        /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+</style>
+
+    <div class="sidenav ">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+    </div> -->
+
+{%endblock%}

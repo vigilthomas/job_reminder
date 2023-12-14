@@ -21,11 +21,10 @@ class JobseekerIndex(ListView):
 
     def get(self, request, *args, **kwargs):
         qs1 = Jobs.objects.all()
-        qs2 = StudentProfile.objects.get(user=request.user)
 
         if "status" in request.GET:
             qs = qs.filter(status=True)
-        return render(request, self.template_name,{"data":qs1,"ud":qs2})
+        return render(request, self.template_name,{"data":qs1})
 
 
 class ProfileCreateView(CreateView):

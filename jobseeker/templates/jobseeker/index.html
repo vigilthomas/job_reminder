@@ -9,7 +9,11 @@
 {%endif%}
 
 <div class="row">
-    <div class="col-9 ps-4 pt-5 bg-light">
+    <div class="col-2 bg-light ">
+        <div class="mt-5 mx-2">
+        </div>
+    </div>
+    <div class="col-8 ps-4 pt-5 bg-light">
         <div class="">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
@@ -53,27 +57,8 @@
         </div>
         {%endfor%}
     </div>
-    <div class="col-3 bg-light ">
+    <div class="col-2 bg-light ">
         <div class="mt-5 mx-2">
-            <div class="card w-100">
-                {%if request.user.profile.profile_pic%}
-                <img src="{{request.user.profile.profile_pic.url}}" class="card-img-top" style="  height: 200px;object-fit: contain;"  alt="...">
-                {%else%}
-                <img src="{%static 'jobseeker/images/user.png'%}" class="card-img-top" alt="...">
-                {%endif%}
-                <div class="card-body">
-                    <h5 class="card-title text-uppercase text-center fw-bold">{{request.user}}</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">Experience : {{ud.experience}}</li>
-                    <li class="list-group-item text-center">Address : {{ud.address}}</li>
-                    <li class="list-group-item text-center">Phone : {{ud.phone}}</li>
-                </ul>
-                <div class="card-body text-center">
-                    <a href="{%url 'jobseeker_detailprofile' request.user.profile.id %}" class="btn btn-dark">Profile</a>
-                    <a href="#" class="btn btn-dark">Applied Jobs</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -7,14 +7,12 @@
         }
 
         .cover {
-                background-image: url(https://source.unsplash.com/random/?nature,space);
+                background-image: url(https://source.unsplash.com/random/?night,building);
                 object-fit:cover;
                 background-repeat: no-repeat
         }
 
         body {
-                                background-image: url(https://source.unsplash.com/random/?night);
-
                 min-height: 100vh;
                 overflow-x: hidden;
         }
@@ -44,15 +42,15 @@
                                 </div>
                                 <div class="bg-light p-4 d-flex justify-content-end text-center">
                                         <ul class="list-inline mb-0">
-                                                <div class="media-body mb-5 text-dark">
-                                                        <h4 class="mt-0 mb-5 text-uppercase fw-bolder">{{data.user}}
+                                                <div class="media-body mb-1 text-dark">
+                                                        <h4 class=" text-uppercase fw-bolder">{{data.user}}
                                                         </h4>
 
                                                 </div>
-                                                <li class="list-inline-item">
+                                                <li class="list-inline-item text-start">
                                                         {%if data.resume %}
                                                         <a href="{{data.resume.url}}" target="_blank"
-                                                                class="btn btn-outline-dark btn-sm btn-block">Resume</a>
+                                                                class="btn btn-dark btn-sm btn-block">Resume</a>
                                                         {%else%}
                                                         <a href="{%url 'jobseeker_editprofile' request.user.profile.id %}"
                                                                 class="btn btn-outline-dark btn-sm btn-block">Upload

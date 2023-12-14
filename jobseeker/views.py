@@ -2,11 +2,10 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
-from django.views.generic import View,CreateView,TemplateView,DetailView,UpdateView
+from django.views.generic import View,CreateView,TemplateView,DetailView,UpdateView,ListView
 
 from jobseeker.forms import RegisterForm,ProfileForm
-from joblisting.models import StudentProfile
-
+from joblisting.models import StudentProfile,Jobs
 # Create your views here.
 
 
@@ -15,8 +14,18 @@ class SignUpView(CreateView):
     form_class = RegisterForm
     success_url=reverse_lazy("hr_login")
 
-class JobseekerIndex(TemplateView):
+class JobseekerIndex(ListView):
     template_name = "jobseeker/index.html"
+    context_object_name = "data"
+    model = Jobs
+
+    def get(self, request, *args, **kwargs):
+        qs1 = Jobs.objects.all()
+        qs2 = StudentProfile.objects.get(user=request.user)
+
+        if "status" in request.GET:
+            qs = qs.filter(status=True)
+        return render(request, self.template_name,{"data":qs1,"ud":qs2})
 
 
 class ProfileCreateView(CreateView):
@@ -40,3 +49,4 @@ class ProfileUpdateView(UpdateView):
     model = StudentProfile
     form_class=ProfileForm
     success_url=reverse_lazy("jobseeker_home")
+

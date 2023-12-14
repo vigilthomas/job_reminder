@@ -1,9 +1,95 @@
 {%extends "jobseeker/base.html"%}
 {%block mainblock%}
 {% load static %}
+<style>
+        .profile-head {
+                transform: translateY(5rem)
+        }
 
-<div class="container mt-5">
-        <div class="row mt-5">
+        .cover {
+                background-image: url(https://source.unsplash.com/random/?nature,space);
+                object-fit:cover;
+                background-repeat: no-repeat
+        }
+
+        body {
+                                background-image: url(https://source.unsplash.com/random/?night);
+
+                min-height: 100vh;
+                overflow-x: hidden;
+        }
+</style>
+<div class="container">
+
+        <div class="row py-5 px-4">
+                <div class="col-md-5 mx-auto"> <!-- Profile widget -->
+                        <div class="bg-white shadow rounded overflow-hidden">
+                                <div class="px-4 pt-0 pb-4 cover">
+                                        <div class="media align-items-end profile-head">
+
+                                                {%if request.user.profile.profile_pic%}
+                                                <div class="profile "><img
+                                                                src="{{request.user.profile.profile_pic.url}}" alt="..."
+                                                                style="width: 40%;height: fit-content;object-fit:cover;"
+                                                                class="rounded mb-2 img-thumbnail">
+                                                </div>
+                                                {%else%}
+                                                <div class="profile mr-3"><img
+                                                                src="{%static 'jobseeker/images/user.png'%}" alt="..."
+                                                                style="width: 30%;height: fit-content;object-fit:cover;"
+                                                                class="rounded mb-2 img-thumbnail">
+                                                </div>
+                                                {%endif%}
+                                        </div>
+                                </div>
+                                <div class="bg-light p-4 d-flex justify-content-end text-center">
+                                        <ul class="list-inline mb-0">
+                                                <div class="media-body mb-5 text-dark">
+                                                        <h4 class="mt-0 mb-5 text-uppercase fw-bolder">{{data.user}}
+                                                        </h4>
+
+                                                </div>
+                                                <li class="list-inline-item">
+                                                        {%if data.resume %}
+                                                        <a href="{{data.resume.url}}" target="_blank"
+                                                                class="btn btn-outline-dark btn-sm btn-block">Resume</a>
+                                                        {%else%}
+                                                        <a href="{%url 'jobseeker_editprofile' request.user.profile.id %}"
+                                                                class="btn btn-outline-dark btn-sm btn-block">Upload
+                                                                Resume</a>
+                                                        {%endif%}
+                                                        <a href="{%url 'jobseeker_editprofile' request.user.profile.id %}"
+                                                                class="btn btn-outline-dark btn-sm btn-block">Edit
+                                                                Profile</a>
+                                                </li>
+
+                                        </ul>
+                                </div>
+                                <div class="px-4 py-3">
+                                                <div class="p-4 rounded shadow-sm bg-light">
+                                                        <div class="row">
+                                                                <div class="col-6">
+                                                                        <p>Qualification : {{data.qualification}}</p>
+                                                                        <p>Skills : {{data.skills}}</p>
+                                                                        <p>Age : {{data.age}}</p>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                        <p>Gender : {{data.gender}}</p>
+                                                                        <p>Address : {{data.address}}</p>
+                                                                        <p>Phone : {{data.phone}}</p>
+                                                                </div>
+
+                                                        </div>
+                                                </div>
+                                </div>
+
+                        </div>
+                </div>
+        </div>
+
+
+
+        <!-- <div class="row mt-5">
                 <div class="col-lg-6 col-md-6 col-ms-12 text-end">
                         <img src="{{data.profile_pic.url}}" class="rounded-3"
                                 style="width: 300px;height: fit-content;max-height: 100%; object-fit: cover;">
@@ -36,7 +122,7 @@
                 </div>
                 
 
-        </div>
+        </div> -->
 </div>
 
 {%endblock%}

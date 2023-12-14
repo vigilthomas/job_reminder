@@ -16,14 +16,13 @@ class ProfileForm(forms.ModelForm):
         model = StudentProfile
         exclude = ("user",)
         widgets = {
-            'qualification': forms.TextInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control "}),
-            'resume': forms.FileInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control "}),
-            'skills': forms.Textarea(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control","row":"3"}),
-            'age': forms.TextInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control " }),
-            'gender': forms.Select(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-select form-control "}),
-            'experience': forms.TextInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control "}),
-            'address': forms.TextInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control "}),
-            'phone': forms.TextInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control "}),
-            'profile_pic': forms.FileInput(attrs={"class": "col-lg-6 col-md-6 col-sm-12 col-12 form-control "}),
-
+            'qualification': forms.TextInput(attrs={"class": "form-control "}),
+            'resume': forms.FileInput(attrs={"class": "form-control "}),
+            'skills': forms.Textarea(attrs={"class": "form-control","row":"3"}),
+            'age': forms.TextInput(attrs={"class": "form-control " }),
+            'gender': forms.Select(attrs={"class": "form-select form-control "}),
+            'experience': forms.TextInput(attrs={"class": "form-control "}),
+            'address': forms.TextInput(attrs={"class": "form-control "}),
+            'phone': forms.TextInput(attrs={"class": "form-control "}),
+            'profile_pic': forms.FileInput(attrs={"class": "form-control "}),
         }

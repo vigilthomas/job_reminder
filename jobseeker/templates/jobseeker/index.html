@@ -1,5 +1,6 @@
 {%extends "jobseeker/base.html"%}
 {%block mainblock%}
+{% load static %}
 <div>
 
 </div>
@@ -8,97 +9,74 @@
 {%endif%}
 
 <div class="row">
-    <div class="col-2 bg-white">
-        
+    <div class="col-9 ps-4 pt-5 bg-light">
+        <div class="">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
+            </div>
+            <hr class="border-3 w-25 d-flex justify-content-center"><br>
+
+        </div>
+        {%for d in data%}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    {%if d.poster%}
+                    <div class="d-flex justify-content-center align-content-around mt-4">
+                        <img src="{{d.poster.url}}" class=""
+                        style="width: 50%;height: fit-content;object-fit:cover;">
+                    
+                    </div>
+                    {%else%}
+                    <img src="{% static 'jobseeker/images/hiring.jpg' %}">
+                    {%endif%}
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{d.title}}</h5>
+                        <p class="fw-bold">{{d.company}}</p>
+                        <p>Vaccancies : {{d.vaccancies}}</p>
+                        <p>Last Date : {{d.last_date}}</p>
+
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
+                    <div class="">
+                        <a href="#" class=" btn btn-warning">View More</a>
+                        <a href="#" class=" btn btn-dark">Apply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
     </div>
-    <div class="col-7 bg-primary pt-5">
-        POST
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat pariatur sapiente velit nesciunt ut?
-        Ea qui esse ng elit. Repellat pariatur sapiente velit nesciunt ut?
-         reprehenderit voluptas. Ab dolor iure nulla quas magni!ur adipisicing elit. Ducimus, ullam earum repellendus est iusto ipsa obcaecati debitis nemo,
-        rem, maiores tempora molestiae reprehenderit voluptas. Ab dolor iure nulla quas magni! reprehenderit voluptas. Ab dolor iure nulla quas magni!
-    </div>
-    <div class="col-4 bg-white ">
-        
+    <div class="col-3 bg-light ">
+        <div class="mt-5 mx-2">
+            <div class="card w-100">
+                {%if request.user.profile.profile_pic%}
+                <img src="{{request.user.profile.profile_pic.url}}" class="card-img-top" style="  height: 200px;object-fit: contain;"  alt="...">
+                {%else%}
+                <img src="{%static 'jobseeker/images/user.png'%}" class="card-img-top" alt="...">
+                {%endif%}
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase text-center fw-bold">{{request.user}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center">Experience : {{ud.experience}}</li>
+                    <li class="list-group-item text-center">Address : {{ud.address}}</li>
+                    <li class="list-group-item text-center">Phone : {{ud.phone}}</li>
+                </ul>
+                <div class="card-body text-center">
+                    <a href="{%url 'jobseeker_detailprofile' request.user.profile.id %}" class="btn btn-dark">Profile</a>
+                    <a href="#" class="btn btn-dark">Applied Jobs</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-
-
-
-
-
-<!-- <div class="d-flex justify-content-around">
-        <a href="#" class="btn btn-dark ">Jobs</a>
-        <a href="#" class="btn btn-dark ">Applied Applications</a>
-        {% if request.user.profile %}
-        <a href="{%url 'jobseeker_detailprofile' request.user.profile.id %}"
-            class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-center">View Profile</a>
-        {% else %}
-        <a href="{%url 'jobseeker_addprofile' %}"
-            class="text-light text-decoration-none p-2 fs-6 btn btn-dark text-center ">Add
-            Profile</a>
-        {%endif%}
-</div>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
-            perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
-            consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
-                perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
-                consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
-                    perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
-                    consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
-                        perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
-                        consectetur labore?</p><br><br><br><br><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat natus voluptas quas tempore mollitia harum
-                            perferendis ex quo laudantium pariatur. Dolorum similique modi aut, perspiciatis iure eligendi eaque
-                            consectetur labore?</p><br><br><br><br>
-    
-<style>
-    .sidenav {
-        height: 100%;
-        width: 28%;
-        margin-right: auto;
-        position: fixed;
-        background-color: #afafaf;
-        overflow-x: hidden;
-        padding-top: 20px;
-    }
-
-    .sidenav a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-    }
-
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }
-
-    .main {
-        margin-right: 160px;
-        /* Same as the width of the sidenav */
-        font-size: 28px;
-        /* Increased text to enable scrolling */
-        padding: 0px 10px;
-    }
-
-    @media screen and (max-height: 450px) {
-        .sidenav {
-            padding-top: 15px;
-        }
-
-        .sidenav a {
-            font-size: 18px;
-        }
-    }
-</style>
-
-    <div class="sidenav ">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
-    </div> -->
 
 {%endblock%}

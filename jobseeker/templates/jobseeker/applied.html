@@ -22,48 +22,37 @@
                 </form>
             </div>
             <hr class="border-3 w-25 d-flex justify-content-center"><br>
-
         </div>
-        {%for d in data%}
+        {%for application in data%}
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-3">
-                    {%if d.poster%}
-                    <div class="d-flex justify-content-center align-content-around mt-4">
-                        <img src="{{d.poster.url}}" class="" style="width: 50%;height: fit-content;object-fit:cover;">
+                    {%if application.job.poster%}
+                    <div class="d-flex justify-content-center ">
+                        <img src="{{application.job.poster.url}}" class="" style="width: 50%;height: fit-content;object-fit:cover;">
 
                     </div>
                     {%else%}
-                    <img src="{% static 'jobseeker/images/hiring.jpg' %}" style="width: 50%;height: fit-content;object-fit:cover;">
+                    <div class="d-flex justify-content-center align-content-around">
+                        <img src="{% static 'jobseeker/images/hiring.jpg' %}" class=""
+                            style="width: 50%;height: fit-content;">
+                    </div>
                     {%endif%}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 ">
                     <div class="card-body">
-                        <h5 class="card-title">{{d.title}}</h5>
-                        <p class="fw-bold">{{d.company}}</p>
-                        <p>Vaccancies : {{d.vaccancies}}</p>
-                        <p>Last Date : {{d.last_date}}</p>
-
+                        <h5 class="card-title">{{application.job.title}}</h5>
+                        <p class="fw-bold">{{application.job.company}}</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
                     <div class="">
-                    {% if request.user.profile %}
-                    <form action="{%url 'savejob' d.id %}" method="post">
-                        {% csrf_token %}
-                        {% if d in request.user.profile.saved_job.all %}
-                        <button type="submit" name="action" value="unsave" class="btn fs-4"><i class="fa-solid fa-bookmark"> </i></button>
-                        {%else%}
-                        <button type="submit" name="action" value="save" class="btn fs-4"><i class="fa-regular fa-bookmark"> </i>
-                        </button>
-                        {%endif%}
-                    </form>
-                    {%endif%}
+                        <p>Application : {{application.job.application_count}}</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
                     <div class="">
-                        <a href="{%url 'jobseeker_jobdetail' d.id %}" class=" btn btn-warning">View More</a>
+                        {{application.status}}
                     </div>
                 </div>
             </div>

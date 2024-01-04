@@ -17,12 +17,12 @@
 {%for d in data%}
 <div class="card mb-3">
     <div class="row g-0">
-        <div class="col-md-3   ">
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
             {%if d.poster%}
-            <img src="{{d.poster.url}}" style="width: 75% ;height: 90%;">
+            <img src="{{d.poster.url}}" style="width: 50%;height: fit-content;object-fit:cover;">
             {%else%}
-            <img src="{% static 'hr/img/deadpool.jpg' %}"
-                style="width: fit-content; max-width: 100%;object-fit: cover ;height: 200px;">
+            <img src="{% static 'hr/img/hiring.jpg' %}"
+                style="width: 50%;height: fit-content;object-fit:cover;">
             {%endif%}
         </div>
         <div class="col-md-6">
@@ -36,9 +36,10 @@
         </div>
         <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
             <div class="">
-                <a href="#" class=" btn btn-dark">View</a>
                 <a href="{%url 'update_job' d.id%}" class=" btn btn-dark">Update</a>
                 <a href="{%url 'delete_job' d.id %}" class=" btn btn-secondary">Delete</a>
+                <a href="{%url 'applications_job' d.id %}" class=" btn btn-dark">{{d.application_count}} View</a>
+
             </div>
         </div>
     </div>

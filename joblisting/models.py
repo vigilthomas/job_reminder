@@ -24,9 +24,19 @@ class Jobs(models.Model):
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
     status = models.BooleanField(default=True)
     company = models.CharField(max_length=200,null=True)
+    options = (
+        ("Part-time", "Part-time"),
+        ("Full-time", "Full-time")
+    )
+    job_type = models.CharField(
+        max_length=200, choices=options, default="full-time")
 
     def __str__(self) -> str:
         return self.title
+        
+    def application_count(self):
+        qs=Applications.objects.filter(job=self).count()
+        return qs
 
 
 class StudentProfile(models.Model):
@@ -44,6 +54,7 @@ class StudentProfile(models.Model):
     profile_pic = models.ImageField(
         upload_to="profilepics", null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="profile")
+    saved_job = models.ManyToManyField(Jobs, null=True, related_name="saved")
 
 
 class Applications(models.Model):
@@ -51,11 +62,9 @@ class Applications(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     applied_date = models.DateTimeField(auto_now_add=True)
     options = (
-        ("pending", "pending"), ("rejected",
-                                 "rejected"), ("processing", "processing")
+        ("pending", "pending"), ("rejected", "rejected"), ("processing", "processing")
     )
-    status = models.CharField(
-        max_length=200, choices=options, default="pending")
+    status = models.CharField( max_length=200, choices=options, default="pending")
 
 
 class Projects(models.Model):

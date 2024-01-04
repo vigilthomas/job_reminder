@@ -7,7 +7,7 @@ from django.views import View
 from django.urls import reverse_lazy
 
 from hr.forms import *
-from joblisting.models import Category
+from joblisting.models import Category,Applications
 
 # Create your views here.
 
@@ -100,3 +100,19 @@ class JobUpdateView(UpdateView):
     model=Jobs
     success_url = reverse_lazy("list_job")
 
+
+class JobApplicationListView(View):
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get("pk")
+        # job_id = Jobs.objects.get(id=id)
+        qs = Applications.objects.filter(job=id)
+        return render(request, "hr/applications.html", {"data": qs})
+
+
+
+
+
+
+
+
+    

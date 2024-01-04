@@ -1,0 +1,59 @@
+{%extends "hr/base.html"%}
+{%block main_block%}
+{% load static %}
+<div>
+
+</div>
+{%if form.errors%}
+{{form.errors}}
+{%endif%}
+
+<div class="row">
+    <div class="col-2 bg-light ">
+        <div class="mt-5 mx-2">
+        </div>
+    </div>
+    <div class="col-8 ps-4 pt-5 bg-light">
+        <div class="">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
+            </div>
+            <hr class="border-3 w-25 d-flex justify-content-center"><br>
+        </div>
+        {%for d in data%}
+            {{d.title}}
+        {%endfor%}
+    </div>
+    <div class="col-12 bg-light ">
+        <div class="mt-5 mx-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">App_Name</th>
+                        <th scope="col">App_Date</th>
+                        <th scope="col">App_Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for d in data %}
+                    <tr>
+                        <th scope="row">{{d.student}}</th>
+                        <td>{{d.applied_data}}</td>
+                        <td>{{d.student}}</td>
+                        <td>{{d.student}}</td>
+                        <td>{{d.student}}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

@@ -22,6 +22,7 @@
                 </form>
             </div>
             <hr class="border-3 w-25 d-flex justify-content-center"><br>
+        <p class="text-secondary">{{data|length}} Saved</p>
 
         </div>
         {%for d in data%}
@@ -34,7 +35,7 @@
 
                     </div>
                     {%else%}
-                    <img src="{% static 'jobseeker/images/hiring.jpg' %}" style="width: 50%;height: fit-content;object-fit:cover;">
+                    <img src="{% static 'jobseeker/images/hiring.jpg' %}">
                     {%endif%}
                 </div>
                 <div class="col-md-3">
@@ -48,17 +49,19 @@
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
                     <div class="">
-                    {% if request.user.profile %}
-                    <form action="{%url 'savejob' d.id %}" method="post">
-                        {% csrf_token %}
-                        {% if d in request.user.profile.saved_job.all %}
-                        <button type="submit" name="action" value="unsave" class="btn fs-4"><i class="fa-solid fa-bookmark"> </i></button>
-                        {%else%}
-                        <button type="submit" name="action" value="save" class="btn fs-4"><i class="fa-regular fa-bookmark"> </i>
-                        </button>
+                        {% if request.user.profile %}
+                        <form action="{%url 'savejob' d.id %}" method="post">
+                            {% csrf_token %}
+                            {% if d in request.user.profile.saved_job.all %}
+                            <button type="submit" name="action" value="unsave" class="btn fs-4"><i
+                                    class="fa-solid fa-bookmark"> </i></button>
+                            {%else%}
+                            <button type="submit" name="action" value="save" class="btn fs-4"><i
+                                    class="fa-regular fa-bookmark"> </i>
+                            </button>
+                            {%endif%}
+                        </form>
                         {%endif%}
-                    </form>
-                    {%endif%}
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-center flex-column ">
@@ -78,3 +81,4 @@
 
 
 {%endblock%}
+

@@ -1,0 +1,37 @@
+{%extends "jobseeker/base.html"%}
+{%block mainblock%}
+{% load static %}
+
+
+<div class="container d-flex justify-content-around">
+<div class="col-md-3">
+   {%if data.poster%}
+   <div class="d-flex justify-content-center align-content-around mt-4">
+      <img src="{{data.poster.url}}" class="" style="width: 50%;height: fit-content;object-fit:cover;">
+   </div>
+   {%else%}
+   <div class="d-flex justify-content-center align-content-around mt-4">
+      <img src="{% static 'jobseeker/images/hiring.jpg' %}" style="width: 50%;height: fit-content;object-fit:cover;">
+   </div>
+   {%endif%}
+</div>
+<div class="card text-center" style="width: 100%;">
+   <div class="card-body">
+      <h5 class="card-title">{{data.title}}</h5>
+      <p class="card-text">{{data.description}}</p>
+      <p class="card-text">{{data.salary}}</p>
+      <p class="card-text">{{data.experience}}</p>
+      <p class="card-text">{{data.company}}</p>
+      <p class="card-text">{{data.qualification}}</p>
+      <p class="card-text">{{data.category}}</p>
+      <p class="card-text">{{data.last_date}}</p>
+      <form action="{%url 'jobseeker_applyjob' data.id %}" method="post">
+         {%csrf_token%}
+               <button type="submit" class="btn btn-dark">Apply Job</button>
+      </form>
+   </div>
+</div>
+
+</div>
+
+{%endblock%}
